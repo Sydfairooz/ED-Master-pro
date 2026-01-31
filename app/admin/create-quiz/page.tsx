@@ -107,7 +107,7 @@ function CreateQuizForm() {
     return (
         <div className="fade-in" style={{ maxWidth: '900px', margin: '0 auto', paddingBottom: '6rem' }}>
             <div style={{ marginBottom: '3rem', textAlign: 'center' }}>
-                <h1 className="title-gradient" style={{ fontSize: '3rem', marginBottom: '0.5rem' }}>
+                <h1 className="title-gradient hero-title" style={{ marginBottom: '0.5rem' }}>
                     {isEditMode ? 'Refine Your Quiz' : 'Assemble a New Challenge'}
                 </h1>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem' }}>
@@ -115,7 +115,7 @@ function CreateQuizForm() {
                 </p>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 350px', gap: '2rem', alignItems: 'start' }}>
+            <div className="create-quiz-grid">
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                     {/* Basic Info */}
                     <div className="glass-panel" style={{ padding: '2rem' }}>
@@ -177,7 +177,7 @@ function CreateQuizForm() {
                                 style={{ fontSize: '1.1rem', padding: '1rem' }}
                             />
 
-                            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+                            <div className="options-grid">
                                 {qOptions.map((opt, idx) => (
                                     <div key={idx} style={{
                                         display: 'flex',
@@ -238,7 +238,7 @@ function CreateQuizForm() {
                 </div>
 
                 {/* Sidebar: Question List & Summary */}
-                <aside style={{ position: 'sticky', top: '7rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <aside className="sidebar-sticky">
                     <div className="glass-panel" style={{ padding: '1.5rem' }}>
                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
                             <h3 style={{ fontSize: '1.1rem' }}>Questions</h3>

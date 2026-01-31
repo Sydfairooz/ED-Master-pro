@@ -3,22 +3,22 @@ import { ArrowRight, Zap, Target, Award, Shield, Globe, Users } from 'lucide-rea
 
 export default function Home() {
   return (
-    <div className="fade-in" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '80vh', gap: '5rem', paddingTop: '4rem' }}>
+    <div className="fade-in home-container">
 
       {/* Hero Section */}
-      <section style={{ textAlign: 'center', maxWidth: '900px' }}>
+      <section className="hero-section">
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(139, 92, 246, 0.1)', padding: '0.5rem 1rem', borderRadius: '30px', color: 'var(--accent-primary)', fontSize: '0.85rem', fontWeight: 'bold', marginBottom: '1.5rem', border: '1px solid rgba(139, 92, 246, 0.2)' }}>
           <Zap size={14} fill="var(--accent-primary)" /> NEW: ADVANCED ANALYTICS FOR ADMINS
         </div>
-        <h1 style={{ fontSize: '4.5rem', marginBottom: '1.5rem', lineHeight: 1, fontWeight: 900, letterSpacing: '-0.02em' }}>
+        <h1 className="hero-title">
           Master Every Topic <br />
           <span className="title-gradient">Without Limits.</span>
         </h1>
-        <p style={{ fontSize: '1.4rem', color: 'var(--text-secondary)', maxWidth: '700px', margin: '0 auto 2.5rem', lineHeight: 1.6 }}>
+        <p className="hero-text">
           The world's most premium platform for knowledge mastery. Expertly crafted quizzes, real-time competition, and detailed performance tracking designed for the elite learner.
         </p>
 
-        <div style={{ display: 'flex', gap: '1.5rem', justifyContent: 'center' }}>
+        <div className="hero-buttons">
           <Link href="/login" className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '1rem 2rem', fontSize: '1.1rem' }}>
             Start Challenging Yourself <ArrowRight size={20} />
           </Link>
@@ -29,7 +29,7 @@ export default function Home() {
       </section>
 
       {/* Stats / Proof Section */}
-      <div className="glass-panel" style={{ padding: '3rem', width: '100%', maxWidth: '1000px', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '3rem', position: 'relative', overflow: 'hidden' }}>
+      <div className="glass-panel stats-grid">
         <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'radial-gradient(circle at center, rgba(139, 92, 246, 0.05), transparent)', pointerEvents: 'none' }}></div>
 
         <div style={{ textAlign: 'center', position: 'relative' }}>
@@ -49,7 +49,7 @@ export default function Home() {
       </div>
 
       {/* Features Grid */}
-      <section style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', width: '100%', maxWidth: '1200px', marginBottom: '4rem' }}>
+      <section className="features-grid">
         <div className="glass-panel" style={{ padding: '2.5rem' }}>
           <div style={{ width: '50px', height: '50px', borderRadius: '12px', background: 'rgba(139, 92, 246, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
             <Target color="var(--accent-primary)" size={28} />

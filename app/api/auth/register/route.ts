@@ -10,7 +10,7 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'Missing fields' }, { status: 400 });
         }
 
-        const existingUser = db.findUserByEmail(email);
+        const existingUser = await db.findUserByEmail(email);
         if (existingUser) {
             return NextResponse.json({ error: 'User already exists' }, { status: 409 });
         }
@@ -23,7 +23,7 @@ export async function POST(request: Request) {
             role: 'student' as const
         };
 
-        db.addUser(newUser);
+        await db.addUser(newUser);
 
         const { password: _, ...userInfo } = newUser;
         return NextResponse.json(userInfo);

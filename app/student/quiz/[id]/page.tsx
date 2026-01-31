@@ -134,9 +134,9 @@ export default function TakeQuizPage() {
                     <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem' }}>Here is how you performed in {quiz.title}</p>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginBottom: '3rem' }}>
+                <div className="results-grid">
                     {/* Overview Card */}
-                    <div className="glass-panel" style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem' }}>
+                    <div className="glass-panel results-card">
                         <div style={{ position: 'relative', width: '180px', height: '180px' }}>
                             <div style={{
                                 width: '100%',
@@ -179,7 +179,7 @@ export default function TakeQuizPage() {
                     </div>
 
                     {/* Analytics Card */}
-                    <div className="glass-panel" style={{ padding: '2.5rem', display: 'flex', justifyContent: 'center' }}>
+                    <div className="glass-panel results-card" style={{ display: 'block' }}>
                         <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                             <h3 style={{ fontSize: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                                 <Target size={24} color="var(--accent-primary)" /> Performance
@@ -205,12 +205,9 @@ export default function TakeQuizPage() {
                                 <span style={{ fontWeight: 'bold', fontSize: '1.2rem' }}>{formatTime(totalTimeMs)}</span>
                             </div>
 
-                            <div style={{ marginTop: 'auto', display: 'flex', gap: '1rem' }}>
-                                <button onClick={() => router.push('/student/dashboard')} className="btn-secondary" style={{ flex: 1, textAlign: 'center' }}>
-                                    Dashboard
-                                </button>
-                                <button onClick={() => window.location.reload()} className="btn-primary" style={{ flex: 1, textAlign: 'center' }}>
-                                    Retry
+                            <div style={{ marginTop: 'auto' }}>
+                                <button onClick={() => router.push('/student/dashboard')} className="btn-primary" style={{ width: '100%', textAlign: 'center' }}>
+                                    Back to Dashboard
                                 </button>
                             </div>
                         </div>
@@ -218,7 +215,7 @@ export default function TakeQuizPage() {
                 </div>
 
                 {/* Share Card */}
-                <div className="glass-panel fade-in" style={{ padding: '2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', animationDelay: '0.2s' }}>
+                <div className="glass-panel fade-in share-card" style={{ animationDelay: '0.2s' }}>
                     <div>
                         <h3 style={{ fontSize: '1.25rem', marginBottom: '0.25rem' }}>Proud of your score?</h3>
                         <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Share your achievement with your friends!</p>
@@ -243,7 +240,7 @@ export default function TakeQuizPage() {
     const question = quiz.questions[currentQuestion];
 
     return (
-        <div style={{ maxWidth: '800px', margin: '0 auto', paddingTop: '2rem' }}>
+        <div className="quiz-container">
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '2rem', color: 'var(--text-secondary)' }}>
                 <span>Question {currentQuestion + 1} of {quiz.questions.length}</span>
                 <span>Score: {score}</span>

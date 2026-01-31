@@ -47,7 +47,7 @@ export default function LeaderboardPage() {
     return (
         <div className="fade-in" style={{ maxWidth: '1000px', margin: '0 auto', paddingBottom: '6rem' }}>
             <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-                <h1 className="title-gradient" style={{ fontSize: '3.5rem', marginBottom: '0.5rem' }}>
+                <h1 className="title-gradient hero-title" style={{ marginBottom: '0.5rem' }}>
                     {viewMode === 'winner' ? 'Tournament Winner' : 'The Hall of Fame'}
                 </h1>
                 <p style={{ color: 'var(--text-secondary)', fontSize: '1.2rem' }}>
@@ -132,10 +132,10 @@ export default function LeaderboardPage() {
                 <>
                     {/* Top 3 Spotlight */}
                     {topThree.length > 0 && (
-                        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginBottom: '4rem', alignItems: 'flex-end' }}>
+                        <div className="podium-grid">
                             {/* Rank 2 */}
                             {topThree[1] && (
-                                <div className="glass-panel fade-in" style={{ padding: '2rem', textAlign: 'center', height: '260px', order: 1 }}>
+                                <div className="glass-panel fade-in podium-rank-2" style={{ padding: '2rem', textAlign: 'center', height: '260px' }}>
                                     <div style={{ position: 'relative', width: '70px', height: '70px', margin: '0 auto 1.5rem', background: 'rgba(148, 163, 184, 0.1)', borderRadius: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                         <UserIcon size={35} color="#94a3b8" />
                                         <div style={{ position: 'absolute', bottom: '-10px', right: '-10px', background: '#94a3b8', color: 'white', width: '28px', height: '28px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', border: '3px solid var(--bg-primary)' }}>2</div>
@@ -147,11 +147,10 @@ export default function LeaderboardPage() {
                             )}
 
                             {/* Rank 1 */}
-                            <div className="glass-panel fade-in" style={{
+                            <div className="glass-panel fade-in podium-rank-1" style={{
                                 padding: '3rem 2rem',
                                 textAlign: 'center',
                                 height: '320px',
-                                order: 2,
                                 border: '2px solid rgba(251, 191, 36, 0.3)',
                                 boxShadow: '0 0 30px rgba(251, 191, 36, 0.1)'
                             }}>
@@ -167,7 +166,7 @@ export default function LeaderboardPage() {
 
                             {/* Rank 3 */}
                             {topThree[2] && (
-                                <div className="glass-panel fade-in" style={{ padding: '2rem', textAlign: 'center', height: '240px', order: 3 }}>
+                                <div className="glass-panel fade-in podium-rank-3" style={{ padding: '2rem', textAlign: 'center', height: '240px' }}>
                                     <div style={{ position: 'relative', width: '60px', height: '60px', margin: '0 auto 1.5rem', background: 'rgba(180, 83, 9, 0.1)', borderRadius: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                                         <UserIcon size={30} color="#b45309" />
                                         <div style={{ position: 'absolute', bottom: '-8px', right: '-8px', background: '#b45309', color: 'white', width: '24px', height: '24px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem', fontWeight: 'bold', border: '2px solid var(--bg-primary)' }}>3</div>
@@ -189,17 +188,13 @@ export default function LeaderboardPage() {
                             </div>
 
                             {entries.map((entry, idx) => (
-                                <div key={entry.userId} className="glass-panel fade-in" style={{
-                                    padding: '1.25rem 2rem',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    gap: '2rem',
+                                <div key={entry.userId} className="glass-panel fade-in leaderboard-item" style={{
                                     animationDelay: `${idx * 0.05}s`,
                                     background: idx < 3 ? 'rgba(139, 92, 246, 0.03)' : 'var(--glass-bg)',
                                     border: idx < 3 ? '1px solid rgba(139, 92, 246, 0.2)' : '1px solid var(--glass-border)'
                                 }}>
                                     <div style={{ width: '40px', height: '40px', borderRadius: '12px', background: idx < 3 ? 'rgba(139, 92, 246, 0.1)' : 'rgba(255,255,255,0.03)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '1.1rem', color: idx < 3 ? 'var(--accent-primary)' : 'var(--text-secondary)', flexShrink: 0 }}>{idx + 1}</div>
-                                    <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', flex: 1 }}>
+                                    <div className="leaderboard-item-content">
                                         <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid var(--glass-border)' }}><UserIcon size={24} color="var(--text-secondary)" /></div>
                                         <div><div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '0.2rem' }}>{entry.userName}</div><div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: 'var(--text-secondary)', fontSize: '0.85rem' }}><Award size={14} /> {entry.gamesPlayed} Quizzes Completed</div></div>
                                     </div>

@@ -39,7 +39,20 @@ export default function AdminDashboard() {
                 return res.ok ? res.json() : [];
             })
         ]).then(([quizzesData, attemptsData]) => {
-            setQuizzes(quizzesData);
+            const sortedQuizzes = Array.isArray(quizzesData) ? [...quizzesData].sort((a, b) => {
+                const isAEnded = a.isEnded || (a.endTime && new Date(a.endTime) <= new Date());
+                const isBEnded = b.isEnded || (b.endTime && new Date(b.endTime) <= new Date());
+
+                if (!isAEnded && isBEnded) return -1;
+                if (isAEnded && !isBEnded) return 1;
+
+                // Within same status, sort by date newest first
+                const dateA = a.endTime ? new Date(a.endTime).getTime() : 0;
+                const dateB = b.endTime ? new Date(b.endTime).getTime() : 0;
+                return dateB - dateA;
+            }) : [];
+
+            setQuizzes(sortedQuizzes);
             setAttempts(attemptsData);
             setLoading(false);
         });
@@ -101,7 +114,7 @@ export default function AdminDashboard() {
 
     return (
         <div className="fade-in">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '3rem' }}>
+            <div className="header-responsive">
                 <div>
                     <h1 className="title-gradient" style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>Admin Console</h1>
                     <p style={{ color: 'var(--text-secondary)' }}>Manage your educational content and track performance</p>
@@ -111,7 +124,7 @@ export default function AdminDashboard() {
                 </Link>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginBottom: '3rem' }}>
+            <div className="quiz-card-grid" style={{ marginBottom: '3rem' }}>
                 <div className="glass-panel" style={{ padding: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
                     <div style={{ padding: '1rem', background: 'rgba(139, 92, 246, 0.1)', borderRadius: '12px' }}>
                         <FileText color="var(--accent-primary)" />
@@ -275,7 +288,7 @@ export default function AdminDashboard() {
                     const quizAttempts = getQuizParticipants(quiz.id);
                     return (
                         <div key={quiz.id} className="glass-panel" style={{ overflow: 'hidden' }}>
-                            <div style={{ padding: '1.5rem', borderBottom: '1px solid var(--glass-border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(255,255,255,0.02)' }}>
+                            <div className="card-header-responsive">
                                 <div>
                                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.25rem' }}>
                                         <h3 style={{ fontSize: '1.25rem' }}>{quiz.title}</h3>
@@ -316,28 +329,30 @@ export default function AdminDashboard() {
                             </div>
 
                             {quizAttempts.length > 0 ? (
-                                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.9rem' }}>
-                                    <thead>
-                                        <tr style={{ background: 'rgba(255,255,255,0.03)', borderBottom: '1px solid var(--glass-border)' }}>
-                                            <th style={{ padding: '0.75rem 1.5rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Student Name</th>
-                                            <th style={{ padding: '0.75rem 1.5rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Date & Time</th>
-                                            <th style={{ padding: '0.75rem 1.5rem', color: 'var(--text-secondary)', fontWeight: 500, textAlign: 'right' }}>Score</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {quizAttempts.map(attempt => (
-                                            <tr key={attempt.id} style={{ borderBottom: '1px solid var(--glass-border)' }}>
-                                                <td style={{ padding: '1rem 1.5rem' }}>{attempt.userName || 'Anonymous'}</td>
-                                                <td style={{ padding: '1rem 1.5rem', color: 'var(--text-secondary)' }}>
-                                                    {new Date(attempt.timestamp).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })}
-                                                </td>
-                                                <td style={{ padding: '1rem 1.5rem', textAlign: 'right', fontWeight: 'bold', color: 'var(--success)' }}>
-                                                    {attempt.score} / {quiz.questions.length}
-                                                </td>
+                                <div className="table-container">
+                                    <table className="responsive-table" style={{ fontSize: '0.9rem' }}>
+                                        <thead>
+                                            <tr style={{ background: 'rgba(255,255,255,0.03)', borderBottom: '1px solid var(--glass-border)' }}>
+                                                <th style={{ padding: '0.75rem 1.5rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Student Name</th>
+                                                <th style={{ padding: '0.75rem 1.5rem', color: 'var(--text-secondary)', fontWeight: 500 }}>Date & Time</th>
+                                                <th style={{ padding: '0.75rem 1.5rem', color: 'var(--text-secondary)', fontWeight: 500, textAlign: 'right' }}>Score</th>
                                             </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            {quizAttempts.map(attempt => (
+                                                <tr key={attempt.id} style={{ borderBottom: '1px solid var(--glass-border)' }}>
+                                                    <td style={{ padding: '1rem 1.5rem' }}>{attempt.userName || 'Anonymous'}</td>
+                                                    <td style={{ padding: '1rem 1.5rem', color: 'var(--text-secondary)' }}>
+                                                        {new Date(attempt.timestamp).toLocaleString([], { dateStyle: 'medium', timeStyle: 'short' })}
+                                                    </td>
+                                                    <td style={{ padding: '1rem 1.5rem', textAlign: 'right', fontWeight: 'bold', color: 'var(--success)' }}>
+                                                        {attempt.score} / {quiz.questions.length}
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
                             ) : (
                                 <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)', fontStyle: 'italic' }}>
                                     No one has taken this quiz yet.

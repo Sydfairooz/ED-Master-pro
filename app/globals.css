@@ -109,9 +109,43 @@ button {
 .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
   min-height: calc(100vh - 80px);
   /* Adjust for navbar */
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 2rem;
+  }
+}
+
+.nav-links-desktop {
+  display: none;
+}
+
+.nav-mobile-btn {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 1024px) {
+  .nav-mobile-btn {
+    display: none !important;
+  }
+}
+
+.nav-links-desktop {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .nav-links-desktop {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+  }
 }
 
 .glass-panel:hover {
@@ -181,5 +215,376 @@ button {
 
   100% {
     transform: rotate(360deg);
+  }
+}
+
+/* Responsive Utilities */
+.hero-section {
+  text-align: center;
+  max-width: 900px;
+  width: 100%;
+}
+
+.hero-title {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.hero-text {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 700px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.6;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1000px;
+  position: relative;
+  overflow: hidden;
+  padding: 1.5rem;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 4.5rem;
+    line-height: 1;
+  }
+
+  .hero-text {
+    font-size: 1.4rem;
+  }
+
+  .hero-buttons {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+
+  .stats-grid {
+    gap: 3rem;
+    padding: 3rem;
+  }
+}
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 80vh;
+  gap: 3rem;
+  padding-top: 2rem;
+}
+
+@media (min-width: 768px) {
+  .home-container {
+    gap: 5rem;
+    padding-top: 4rem;
+  }
+}
+
+/* Dashboard Utilities */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+@media (min-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: 3fr 1fr;
+    gap: 2rem;
+  }
+}
+
+.quiz-card-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .quiz-card-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+}
+
+.table-container {
+  overflow-x: auto;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+.responsive-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  min-width: 600px;
+}
+
+.header-responsive {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .header-responsive {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+}
+
+.card-header-responsive {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--glass-border);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+@media (min-width: 640px) {
+  .card-header-responsive {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+/* Leaderboard Utilities */
+.podium-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 4rem;
+  align-items: center;
+}
+
+.podium-rank-1 {
+  order: 1;
+}
+
+.podium-rank-2 {
+  order: 2;
+}
+
+.podium-rank-3 {
+  order: 3;
+}
+
+@media (min-width: 900px) {
+  .podium-grid {
+    grid-template-columns: repeat(3, 1fr);
+    align-items: flex-end;
+  }
+
+  .podium-rank-1 {
+    order: 2;
+  }
+
+  /* Winner Center */
+  .podium-rank-2 {
+    order: 1;
+  }
+
+  /* Left */
+  .podium-rank-3 {
+    order: 3;
+  }
+
+  /* Right */
+}
+
+.leaderboard-item {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  text-align: center;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+}
+
+.leaderboard-item-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .leaderboard-item {
+    flex-direction: row;
+    text-align: left;
+    padding: 1.25rem 2rem;
+    gap: 2rem;
+  }
+
+  .leaderboard-item-content {
+    flex-direction: row;
+    align-items: center;
+    width: auto;
+    flex: 1;
+    gap: 1.25rem;
+  }
+}
+
+/* Quiz Page Utilities */
+.quiz-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding-top: 2rem;
+  width: 100%;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.results-card {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .results-card {
+    padding: 2.5rem;
+  }
+}
+
+.share-card {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .share-card {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+    padding: 2rem;
+  }
+}
+
+/* Auth Page Utilities */
+.auth-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  width: 100%;
+  padding: 1rem;
+}
+
+.auth-card {
+  padding: 2rem;
+  width: 100%;
+  max-width: 450px;
+}
+
+@media (min-width: 640px) {
+  .auth-card {
+    padding: 3rem;
+  }
+}
+
+/* Create Quiz Page Utilities */
+.create-quiz-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .create-quiz-grid {
+    grid-template-columns: 1fr 350px;
+  }
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .options-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.sidebar-sticky {
+  position: relative;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .sidebar-sticky {
+    position: sticky;
+    top: 7rem;
+  }
+}
+
+.mobile-card-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.desktop-table {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .mobile-card-list {
+    display: none !important;
+  }
+
+  .desktop-table {
+    display: table !important;
+    width: 100%;
   }
 }

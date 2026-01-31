@@ -108,8 +108,8 @@ export default function LoginPage() {
 
     return (
 
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '80vh' }}>
-            <div className="glass-panel" style={{ padding: '3rem', width: '100%', maxWidth: '400px' }}>
+        <div className="auth-wrapper">
+            <div className="glass-panel auth-card">
                 <h2 className="title-gradient" style={{ textAlign: 'center', fontSize: '2rem', marginBottom: '0.5rem' }}>
                     {isLogin ? 'Welcome Back' : 'Student Sign Up'}
                 </h2>

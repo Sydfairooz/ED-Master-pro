@@ -40,6 +40,10 @@ export const db_helper = {
         const userDoc = querySnapshot.docs[0];
         return { id: userDoc.id, ...userDoc.data() } as User;
     },
+    addUser: async (user: User) => {
+        await setDoc(doc(db, 'users', user.id), user);
+        return user;
+    },
     verifyRole: async (userId: string, requiredRole: Role) => {
         const userDoc = await getDoc(doc(db, 'users', userId));
         if (!userDoc.exists()) {

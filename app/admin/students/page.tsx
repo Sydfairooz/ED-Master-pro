@@ -58,24 +58,24 @@ export default function StudentsManagement() {
 
     return (
         <div className="fade-in">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.5rem' }}>
+            <div className="header-responsive">
                 <div>
                     <h1 className="title-gradient" style={{ fontSize: '2.5rem', marginBottom: '0.5rem' }}>Student Management</h1>
                     <p style={{ color: 'var(--text-secondary)' }}>Review profiles, monitor performance, and manage access</p>
                 </div>
-                <div style={{ position: 'relative' }}>
+                <div style={{ position: 'relative', width: '100%', maxWidth: '400px' }}>
                     <Search style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-secondary)' }} size={18} />
                     <input
                         className="input-field"
                         placeholder="Search by name or email..."
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
-                        style={{ paddingLeft: '3rem', width: '300px' }}
+                        style={{ paddingLeft: '3rem', width: '100%' }}
                     />
                 </div>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(350px, 1fr))', gap: '1.5rem' }}>
+            <div className="quiz-card-grid">
                 {filteredStudents.map(student => (
                     <div key={student.id} className="glass-panel" style={{ padding: '1.5rem', transition: 'all 0.3s' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', marginBottom: '1.25rem' }}>
