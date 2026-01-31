@@ -3,8 +3,11 @@ import { db } from '@/lib/db';
 
 export async function GET() {
     try {
-        const leaderboard = await db.getLeaderboard();
-        return NextResponse.json(leaderboard);
+        const [global, quizWinners] = await Promise.all([
+            db.getLeaderboard(),
+            db.getQuizWinners()
+        ]);
+        return NextResponse.json({ global, quizWinners });
     } catch (error) {
         return NextResponse.json({ error: 'Failed to fetch leaderboard' }, { status: 500 });
     }

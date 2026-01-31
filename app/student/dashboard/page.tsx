@@ -11,7 +11,7 @@ function QuizCard({ quiz, myAttempts }: { quiz: Quiz, myAttempts: any[] }) {
     const isEnded = quiz.isEnded || (quiz.endTime && new Date(quiz.endTime) <= new Date());
 
     return (
-        <div key={quiz.id} className="glass-panel" style={{
+        <div key={quiz.id} className="glass-panel hover-lift" style={{
             padding: '2rem',
             display: 'flex',
             flexDirection: 'column',
@@ -102,8 +102,8 @@ export default function StudentDashboard() {
     if (loading) return <div style={{ textAlign: 'center', marginTop: '4rem' }}>Loading...</div>;
 
     return (
-        <div>
-            <h1 className="title-gradient" style={{ fontSize: '2.5rem', marginBottom: '2rem' }}>Welcome, {user?.name}</h1>
+        <div className="slide-up">
+            <h1 className="title-gradient scale-up" style={{ fontSize: '2.5rem', marginBottom: '2rem' }}>Welcome, {user?.name}</h1>
 
             <div className="dashboard-grid">
 
@@ -118,7 +118,7 @@ export default function StudentDashboard() {
                             <div style={{ display: 'inline-block', padding: '0.4rem 1rem', background: 'rgba(139, 92, 246, 0.2)', border: '1px solid var(--accent-primary)', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 'bold', color: 'var(--accent-primary)', marginBottom: '1rem' }}>
                                 LIVE NOW
                             </div>
-                            <div className="quiz-card-grid">
+                            <div className="quiz-card-grid slide-up stagger-1">
                                 {quizzes
                                     .filter(q => {
                                         const isEnded = q.isEnded || (q.endTime && new Date(q.endTime) <= new Date());
@@ -135,7 +135,7 @@ export default function StudentDashboard() {
 
                     {/* Other Quizzes */}
                     <h3 style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', marginBottom: '1rem', marginTop: '2rem' }}>History & Previous Quizzes</h3>
-                    <div className="quiz-card-grid">
+                    <div className="quiz-card-grid slide-up stagger-2">
                         {quizzes
                             .filter(q => {
                                 const isEnded = q.isEnded || (q.endTime && new Date(q.endTime) <= new Date());
@@ -161,9 +161,9 @@ export default function StudentDashboard() {
 
                 <section>
                     <h2 style={{ fontSize: '1.5rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                        <Award size={24} color="var(--success)" /> My Recent Scores
+                        <Award size={24} className="float" color="var(--success)" /> My Recent Scores
                     </h2>
-                    <div className="glass-panel table-container">
+                    <div className="glass-panel table-container slide-up stagger-3">
                         {/* Desktop Table View */}
                         <table className="responsive-table desktop-table">
                             <thead>

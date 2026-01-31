@@ -3,14 +3,14 @@ import { ArrowRight, Zap, Target, Award, Shield, Globe, Users } from 'lucide-rea
 
 export default function Home() {
   return (
-    <div className="fade-in home-container">
+    <div className="slide-up home-container">
 
       {/* Hero Section */}
       <section className="hero-section">
         <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(139, 92, 246, 0.1)', padding: '0.5rem 1rem', borderRadius: '30px', color: 'var(--accent-primary)', fontSize: '0.85rem', fontWeight: 'bold', marginBottom: '1.5rem', border: '1px solid rgba(139, 92, 246, 0.2)' }}>
           <Zap size={14} fill="var(--accent-primary)" /> NEW: ADVANCED ANALYTICS FOR ADMINS
         </div>
-        <h1 className="hero-title">
+        <h1 className="hero-title scale-up">
           Master Every Topic <br />
           <span className="title-gradient">Without Limits.</span>
         </h1>
@@ -29,7 +29,7 @@ export default function Home() {
       </section>
 
       {/* Stats / Proof Section */}
-      <div className="glass-panel stats-grid">
+      <div className="glass-panel stats-grid slide-up stagger-1">
         <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', background: 'radial-gradient(circle at center, rgba(139, 92, 246, 0.05), transparent)', pointerEvents: 'none' }}></div>
 
         <div style={{ textAlign: 'center', position: 'relative' }}>
@@ -50,16 +50,16 @@ export default function Home() {
 
       {/* Features Grid */}
       <section className="features-grid">
-        <div className="glass-panel" style={{ padding: '2.5rem' }}>
-          <div style={{ width: '50px', height: '50px', borderRadius: '12px', background: 'rgba(139, 92, 246, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
+        <div className="glass-panel hover-lift slide-up stagger-1" style={{ padding: '2.5rem' }}>
+          <div className="float" style={{ width: '50px', height: '50px', borderRadius: '12px', background: 'rgba(139, 92, 246, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
             <Target color="var(--accent-primary)" size={28} />
           </div>
           <h4 style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>Precision Mapping</h4>
           <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6 }}>Track your strengths and weaknesses with pinpoint accuracy through our advanced scoring algorithms.</p>
         </div>
 
-        <div className="glass-panel" style={{ padding: '2.5rem' }}>
-          <div style={{ width: '50px', height: '50px', borderRadius: '12px', background: 'rgba(6, 182, 212, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
+        <div className="glass-panel hover-lift slide-up stagger-2" style={{ padding: '2.5rem' }}>
+          <div className="float" style={{ animationDelay: '0.2s', width: '50px', height: '50px', borderRadius: '12px', background: 'rgba(6, 182, 212, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
             <Globe color="var(--accent-secondary)" size={28} />
           </div>
           <h4 style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>Elite Community</h4>
@@ -67,8 +67,8 @@ export default function Home() {
           <p style={{ color: 'var(--text-secondary)', lineHeight: 1.6 }}>Compete against the brightest minds worldwide and secure your place in the Hall of Fame.</p>
         </div>
 
-        <div className="glass-panel" style={{ padding: '2.5rem' }}>
-          <div style={{ width: '50px', height: '50px', borderRadius: '12px', background: 'rgba(16, 185, 129, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
+        <div className="glass-panel hover-lift slide-up stagger-3" style={{ padding: '2.5rem' }}>
+          <div className="float" style={{ animationDelay: '0.4s', width: '50px', height: '50px', borderRadius: '12px', background: 'rgba(16, 185, 129, 0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
             <Shield color="var(--success)" size={28} />
           </div>
           <h4 style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>Secure Learning</h4>

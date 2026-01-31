@@ -225,6 +225,45 @@ export const db_helper = {
             return b.totalScore - a.totalScore;
         });
         return leaderboard;
+    },
+
+    getQuizWinners: async () => {
+        const attemptsSnapshot = await getDocs(collection(db, 'attempts'));
+        const usersSnapshot = await getDocs(collection(db, 'users'));
+        const quizzesSnapshot = await getDocs(collection(db, 'quizzes'));
+
+        const userMap = new Map();
+        usersSnapshot.forEach(doc => {
+            userMap.set(doc.id, doc.data().name);
+        });
+
+        const quizMap = new Map();
+        quizzesSnapshot.forEach(doc => {
+            quizMap.set(doc.id, doc.data().title);
+        });
+
+        const quizWinners = new Map<string, { quizId: string; quizTitle: string; winnerName: string; score: number; totalQuestions: number }>();
+
+        attemptsSnapshot.forEach(doc => {
+            const data = doc.data();
+            const quizId = data.quizId;
+            const score = data.score;
+            const totalQuestions = data.totalQuestions || 0;
+
+            const currentWinner = quizWinners.get(quizId);
+            // Higher score wins. If scores are equal, we could take the one with better time (if recorded) or just keep first.
+            if (!currentWinner || score > currentWinner.score) {
+                quizWinners.set(quizId, {
+                    quizId,
+                    quizTitle: quizMap.get(quizId) || 'Unknown Quiz',
+                    winnerName: userMap.get(data.userId) || 'Unknown User',
+                    score,
+                    totalQuestions
+                });
+            }
+        });
+
+        return Array.from(quizWinners.values());
     }
 };
 
